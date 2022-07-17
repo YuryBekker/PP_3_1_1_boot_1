@@ -38,7 +38,7 @@ public class UserController {
 
     @GetMapping("/add")
     public String addPage() {
-        return "editPage";
+        return "addPage";
     }
 
     @PostMapping("/add")

@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <th:if test="${empty user.name}">
-        <title>Add</title>
-    </th:if>
-    <th:if test="${!empty user.name}">
-        <title>Edit</title>
-    </th:if>
-    <title>Wow</title>
+    <title>Edit</title>
 </head>
 <body>
-<th:if test="${empty user.name}">
-    <th:href value="/add" var="var"/>
-</th:if>
-<th:if test="${!empty user.name}">
-    <th:href value="/edit" var="var"/>
-</th:if>
-<div th:with="val">
-<a th:href="val=@{/edit}"
-   th:if="${user.name}">Edit</a>
-<a th:href="val=@{/add}"
-   th:unless="${user.name}">Add</a>
+<div>
+    <h2>Edit User</h2>
+    <form th:action="@{/edit}" th:object="${user}" method="post">
+        <table>
+            <tr>
+                <td><label for="id">ID:</label></td>
+                <td><input type="number" id=id th:field="${user.id}" readonly/></td>
+            </tr>
+            <tr>
 
-    <p th:text="val">eee</p>
+                <td><label for="name">Name:</label></td>
+                <td><input type="text" id=name th:field="${user.name}"/></td>
+            </tr>
+            <tr>
+                <td><label for="sn">Surname:</label></td>
+                <td><input type="text" id=sn th:field="${user.surname}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update"></td>
+            </tr>
+        </table>
+    </form>
 </div>
 </body>
 </html>
