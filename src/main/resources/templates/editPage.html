@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Edit</title>
+    <th:if test="${empty user.name}">
+        <title>Add</title>
+    </th:if>
+    <th:if test="${!empty user.name}">
+        <title>Edit</title>
+    </th:if>
+    <title>Wow</title>
 </head>
 <body>
-Edit
+<th:if test="${empty user.name}">
+    <th:href value="/add" var="var"/>
+</th:if>
+<th:if test="${!empty user.name}">
+    <th:href value="/edit" var="var"/>
+</th:if>
+<div th:with="val">
+<a th:href="val=@{/edit}"
+   th:if="${user.name}">Edit</a>
+<a th:href="val=@{/add}"
+   th:unless="${user.name}">Add</a>
+
+    <p th:text="val">eee</p>
+</div>
 </body>
 </html>
